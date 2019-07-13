@@ -6,7 +6,7 @@
   "password": "25313",
   "database": "db1",
   "synchronize": true,
-  "logging": true,
+  "logging": false,
   "entities": [
      "src/entity/*.*"
   ]
