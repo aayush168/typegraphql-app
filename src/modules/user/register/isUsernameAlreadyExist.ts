@@ -4,7 +4,7 @@ import { User } from "../../../entity/User";
 @ValidatorConstraint({ async: true })
 export class IsUserAlreadyExistConstraint implements ValidatorConstraintInterface {
   validate(username: string) {
-    return User.findOne({where: {username}}).then(user => {
+    return User.findOne({ where: { username }}).then(user => {
       if (user) return false;
       return true;
     });

@@ -1,10 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from "typeorm";
 import { Field, ID, ObjectType } from "type-graphql";
-import { Services } from "./Services"
+import { ExpertServices } from "./ExpertServices"
 
 @ObjectType()
 @Entity()
-export class Experts extends BaseEntity {
+export class Expert extends BaseEntity {
     @Field(() => ID)
     @PrimaryGeneratedColumn()
     id: number;
@@ -18,16 +18,17 @@ export class Experts extends BaseEntity {
     lastName: string;
 
     @Field()
-    @Column()
+    @Column({ unique: true })
     phoneNumber: string;
 
     @Field()
-    @Column()
+    @Column({ unique: true })
     email: string;
 
     @Column("bool", { default: false })
     verified: boolean;
+
+    @OneToMany(() => ExpertServices, expertServices => expertServices.serviceOwner)
+    services: ExpertServices[]
     
-    @OneToMany(() => Services, services => services.experts)
-    services: Services[];
 }
