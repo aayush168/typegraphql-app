@@ -19,11 +19,14 @@ export class Expert extends BaseEntity {
 
     @Field()
     @Column({ unique: true })
-    phoneNumber: string;
+    phone: string;
 
     @Field()
     @Column({ unique: true })
     email: string;
+
+    @Column()
+    password: string;
 
     @Column("bool", { default: false })
     verified: boolean;

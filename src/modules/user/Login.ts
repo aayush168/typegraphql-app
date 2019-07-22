@@ -5,7 +5,7 @@ import { MyContext } from "../../types/MyContext";
 
 
 @Resolver(User)
-export class LoginResolver {
+export class UserLoginResolver {
   @Mutation(() => User, { nullable: true } )
   async login(
     @Arg("username") username: string,

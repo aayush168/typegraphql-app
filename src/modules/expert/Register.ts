@@ -1,23 +1,24 @@
 import { Resolver, Mutation, Arg } from "type-graphql";
 import bcrypt from "bcryptjs";
-import { User } from "../../entity/User";
+import { Expert } from "../../entity/Expert";
 import { RegisterInput } from './register/RegisterInput';
 
-@Resolver(User)
-export class UserRegisterResolver {
-  @Mutation(() => User)
+@Resolver(Expert)
+export class ExpertRegisterResolver {
+  @Mutation(() => Expert)
   async register(@Arg("data")
-  { firstName, lastName, username, password } : RegisterInput 
-  ): Promise<User> {
+  { firstName, lastName, email, phone,  password } : RegisterInput 
+  ): Promise<Expert> {
     const hashedPassword = await bcrypt.hash(password, 8)
 
-    const user = await User.create({
+    const expert = await Expert.create({
       firstName,
       lastName,
-      username,
+      email,
+      phone,
       password: hashedPassword
     }).save()
     
-    return user
+    return expert
   }
 }

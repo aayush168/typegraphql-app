@@ -3,9 +3,8 @@ import { User } from "../../entity/User";
 import { MyContext } from "../../types/MyContext";
 import { isAuthenticated } from "../../middlewares/isAuthenticated";
 
-
 @Resolver(User)
-export class CheckLoginResolver {
+export class UserCheckLoginResolver {
   @UseMiddleware(isAuthenticated)
   @Query(() => User, { nullable: true })
   async checkLogin(@Ctx() ctx:  MyContext): Promise<User | undefined> {
